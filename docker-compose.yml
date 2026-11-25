@@ -1,0 +1,23 @@
+# Cluster de 4 nós em contêineres, cada um com IP próprio na rede "lan".
+# Uso:  docker compose up --build     (Ctrl+C para parar)
+# Os nós se descobrem por broadcast UDP e rodam a bateria de testes sozinhos.
+services:
+  no1: &no
+    build: .
+    image: arquipelago
+    command: ["lan", "--auto-start", "20", "--exit-when-done"]
+    networks: [lan]
+    volumes: ["./resultados_docker/no1:/app/out"]
+    working_dir: /app/out
+  no2:
+    <<: *no
+    volumes: ["./resultados_docker/no2:/app/out"]
+  no3:
+    <<: *no
+    volumes: ["./resultados_docker/no3:/app/out"]
+  no4:
+    <<: *no
+    volumes: ["./resultados_docker/no4:/app/out"]
+networks:
+  lan:
+    driver: bridge

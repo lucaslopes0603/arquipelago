@@ -1,0 +1,8 @@
+.venv/
+build/
+dist/
+resultados_docker/
+**/__pycache__/
+*.pyc
+relatorio/
+apresentacao/

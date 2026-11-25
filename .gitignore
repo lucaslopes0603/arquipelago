@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+dados/
+arquipelago_dados*/
+arquipelago_resultados/
+demonstracao_execucao/dados/
+resultados_docker/
+build/
+dist/
+*.egg-info/
+
+# Arquivos da entrega e registros permanecem locais
+documentacao/
+demonstracao_windows/
+demonstracao_execucao/
+*.log

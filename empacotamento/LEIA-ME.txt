@@ -1,0 +1,39 @@
+ARQUIPÉLAGO — teste distribuído em vários computadores
+======================================================
+
+COMO USAR (2 ou mais computadores na mesma rede)
+1. Copie o Arquipelago.exe para cada computador (pen drive, rede, e-mail...).
+2. Dê dois cliques no Arquipelago.exe em cada um deles.
+   - Se o Windows perguntar sobre o firewall, clique em "Permitir acesso".
+   - Se aparecer "O Windows protegeu o computador", clique em "Mais informações" ->
+     "Executar assim mesmo".
+3. As janelas se encontram sozinhas e mostram a lista de computadores.
+4. Pressione ENTER em qualquer uma delas (ou espere 40 s) para começar o teste.
+5. O teste leva de 2 a 3 minutos. Durante ele, um computador e depois o líder
+   "caem" de propósito e reiniciam sozinhos. NÃO feche as janelas.
+6. No fim, todas as janelas mostram o relatório, e a conclusão do teste abre
+   sozinha no Bloco de Notas. Os dois arquivos ficam salvos na pasta
+   "arquipelago_resultados", ao lado do executável.
+
+O QUE É TESTADO
+ 1. Comunicação gRPC entre todos os computadores (RTT)
+ 2. Eleição de líder (algoritmo do Valentão / Bully)
+ 3. Sincronização de relógios físicos (Berkeley)
+ 4. Algoritmo genético distribuído em ilhas (TSP, 150 cidades)
+ 5. Desempenho: distribuído x uma única máquina (speedup)
+ 6. Falha de um trabalhador: detecção e reatribuição da ilha
+ 7. Falha do líder: nova eleição e continuidade a partir das réplicas
+ 8. Consistência das réplicas do estado do coordenador
+ 9. Relógios de Lamport: ordem causal das mensagens entre os computadores
+
+SE OS COMPUTADORES NÃO SE ACHAREM
+ - Confirme que estão na mesma rede e que o firewall foi liberado
+   (botão direito em liberar_firewall.bat -> Executar como administrador).
+ - Redes que bloqueiam broadcast: digite na janela o IP de outro computador
+   (aparece no topo da janela dele) e tecle ENTER, ou crie um peers.txt
+   (veja peers_exemplo.txt).
+
+SEM OUTROS COMPUTADORES
+ - simular_3_nos_neste_pc.bat roda a mesma bateria com 3 nós nesta máquina.
+
+Portas usadas: TCP 50051 em diante (gRPC) e UDP 50050 (descoberta).
