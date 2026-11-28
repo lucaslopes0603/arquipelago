@@ -1,0 +1,5 @@
+# Só é necessário se a rede bloquear broadcast (os computadores não se acharem sozinhos).
+# Renomeie este arquivo para peers.txt, deixe-o ao lado do Arquipelago.exe e
+# coloque o IP de pelo menos um outro computador por linha (porta padrão 50051):
+# 192.168.0.15
+# 192.168.0.22:50051
