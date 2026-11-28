@@ -4,7 +4,7 @@ O líder atua como mestre (time daemon):
   1. pergunta a hora a todos os nós (GetTime) medindo o RTT de cada consulta;
   2. estima o desvio de cada nó como (hora_remota + RTT/2) - hora_mestre;
   3. calcula a média dos desvios, ignorando leituras discrepantes (outliers)
-     e leituras com RTT alto — média tolerante a falhas;
+     e leituras com RTT alto (média tolerante a falhas);
   4. envia a cada nó o AJUSTE (média - desvio_do_nó), em vez da hora
      absoluta, para que o atraso da mensagem de volta não afete o resultado;
   5. aplica o próprio ajuste.

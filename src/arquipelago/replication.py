@@ -11,7 +11,7 @@ propaga as escritas para todos os seguidores (backups):
 
 Escritas críticas (antes de injetar uma falha, ao concluir um job) usam
 wait_synced(): o líder só segue depois que todos os backups vivos confirmaram
-— replicação síncrona. As demais são assíncronas (enviadas em lote a cada
+(replicação síncrona). As demais são assíncronas (enviadas em lote a cada
 REPLICATION_INTERVAL), para não atrasar o cálculo.
 
 Quando o líder cai, o novo líder (eleito pelo Bully) já tem uma cópia do
@@ -61,7 +61,7 @@ class Replicator:
         """Uma rodada: codifica cada delta UMA vez por versão-base e envia a todos que precisam.
 
         Os seguidores em dia costumam estar na mesma versão, então um único
-        JSON+zlib serve a todos (antes, cada seguidor custava uma codificação).
+        JSON+zlib serve a todos.
         """
         node = self.node
         store = node.store

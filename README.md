@@ -7,6 +7,10 @@ distribuído no modelo de ilhas**: cada nó evolui uma subpopulação (uma "ilha
 época, envia seus melhores indivíduos para a próxima ilha de um anel lógico (migração).
 Um nó líder coordena o trabalho; se ele falhar, outro é eleito e continua de onde parou.
 
+O relatório da entrega 2 está em
+[entrega2final/Relatorio_Entrega2_Arquipelago.pdf](entrega2final/Relatorio_Entrega2_Arquipelago.pdf).
+A mesma pasta tem o código compactado e o executável pronto em `entrega2final/Demonstracao/`.
+
 ## Requisitos implementados
 
 | Requisito do enunciado | Onde está |
@@ -44,17 +48,18 @@ src/arquipelago/
   cli.py                  linha de comando
 tests/                    testes automatizados (pytest)
 scripts/benchmark.py      análise de desempenho
-empacotamento/            geração do Arquipelago.exe
-relatorio/                relatórios das entregas 1 e 2 (LaTeX, template SBC)
-apresentacao/             slides
-docs/GUIA_DE_ESTUDO.md    explicação por integrante + perguntas prováveis
+scripts/graficos.py       gráficos da análise de desempenho
+empacotamento/            geração do Arquipelago.exe e arquivos de apoio (.bat, peers_exemplo.txt, LEIA-ME.txt)
+demonstrar.command        demonstração no macOS/Linux
+entrega2final/            relatório em PDF, código compactado e executável da entrega 2
 ```
 
 ## Como executar
 
 ### 1. Executável (laboratório, sem instalar nada)
 
-1. Copie `dist/Arquipelago.exe` para **cada** computador.
+1. Copie o `Arquipelago.exe` para **cada** computador. Ele já vem pronto na pasta
+   `entrega2final/Demonstracao/`. Para gerar de novo a partir do código, veja a seção 4 (o executável fica em `dist\`).
 2. Dê dois cliques nele em cada um. Se o Windows perguntar sobre o firewall, clique em **Permitir**.
 3. Os computadores se encontram sozinhos (broadcast UDP). Pressione **ENTER** em qualquer um deles,
    ou espere 40 s sem novos computadores entrando.
@@ -63,10 +68,14 @@ docs/GUIA_DE_ESTUDO.md    explicação por integrante + perguntas prováveis
    é salvo em `arquipelago_resultados/`.
 
 Se a rede bloquear broadcast, digite o IP de outro computador na janela e tecle ENTER, ou use um
-`peers.txt` (veja `dist/peers_exemplo.txt`). Para liberar o firewall de uma vez, rode
-`dist/liberar_firewall.bat` como administrador.
+`peers.txt` (veja `peers_exemplo.txt`). Para liberar o firewall de uma vez, rode
+`liberar_firewall.bat` como administrador.
 
-Sem outros computadores, `dist/simular_3_nos_neste_pc.bat` roda a mesma bateria com 3 nós locais.
+Sem outros computadores, `simular_3_nos_neste_pc.bat` roda a mesma bateria com 3 nós locais.
+
+Esses arquivos de apoio ficam ao lado do executável (em `entrega2final/Demonstracao/`, ou em `dist\` depois de
+gerar o executável) e, no código-fonte, em `empacotamento/`. Os `.bat` precisam estar na mesma
+pasta do `Arquipelago.exe`.
 
 ### 2. A partir do código (Python 3.11+)
 
@@ -116,8 +125,8 @@ Os resultados ficam em `resultados_docker/noX/arquipelago_resultados/`.
 ```powershell
 pip install -r requirements-dev.txt
 python -m pytest tests                                   # 17 testes (unidades + cluster gRPC real)
-python scripts/benchmark.py --nodes 1 2 4 8 --reps 2     # speedup/eficiência -> relatorio/dados
-python scripts/graficos.py                               # figuras do relatório
+python scripts/benchmark.py --reps 2                     # k = 1, 2, 3, 4, 6 e 8 nós (Tabela 3) -> relatorio/dados/ (criada na hora)
+python scripts/graficos.py                               # gráficos -> relatorio/figuras/
 powershell -ExecutionPolicy Bypass -File empacotamento\gerar_exe.ps1   # gera dist\Arquipelago.exe
 ```
 
@@ -150,10 +159,6 @@ O modo local inicia três processos, executa a bateria completa e encerra os nó
 As quedas do trabalhador e do líder são provocadas pela própria demonstração.
 Relatórios ficam em `demonstracao_execucao/arquipelago_resultados/`.
 Para repetir, execute o mesmo comando; os relatórios têm identificação por data e hora.
-
-Na cópia local preparada a partir da entrega, o executável original fica em
-`demonstracao_windows/` e os documentos em `documentacao/`. Essas pastas e os
-registros da execução permanecem locais e não são versionados.
 
 Para executar os testes:
 

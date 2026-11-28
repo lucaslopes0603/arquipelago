@@ -9,7 +9,7 @@ distribuído (comunicação, replicação, coordenação).
 Também roda a versão sequencial pura (sem rede, ga.run_sequential).
 
 Uso:
-  python scripts/benchmark.py --nodes 1 2 4 6 8 --reps 2 --out relatorio/dados
+  python scripts/benchmark.py --reps 2 --out relatorio/dados   (k = 1, 2, 3, 4, 6 e 8)
 """
 
 import argparse

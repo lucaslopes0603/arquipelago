@@ -12,7 +12,7 @@ build/
 dist/
 *.egg-info/
 
-# Arquivos da entrega e registros permanecem locais
+# Pastas locais de demonstração e registros de execução
 documentacao/
 demonstracao_windows/
 demonstracao_execucao/

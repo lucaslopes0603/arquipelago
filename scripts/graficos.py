@@ -19,7 +19,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "relatorio", "dados", "benchmark.json")
 OUT = os.path.join(ROOT, "relatorio", "figuras")
 
-# Paleta de referência (modo claro): slots categóricos 1 e 2, tinta de texto e grade discretas.
+# Cores dos gráficos: azul e laranja para as duas séries, cinzas para texto e grade.
 BLUE, ORANGE = "#2a78d6", "#eb6834"
 INK, INK2, GRID, REF = "#0b0b0b", "#52514e", "#e4e3df", "#8a8984"
 
